@@ -28,7 +28,48 @@
     },
     "strings": {
       "patterns": [
-        { "match": "\"(\\\\.|[^\"])*\"", "name": "string.quoted.double.adan" }
+        {
+          "begin": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.adan" } },
+          "end": "\"",
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.adan" } },
+          "name": "string.quoted.double.adan",
+          "patterns": [
+            { "include": "#interpolation" },
+            { "match": "\\\\.", "name": "constant.character.escape.adan" }
+          ]
+        }
+      ]
+    },
+    "interpolation": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.adan" } },
+          "end": "\"",
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.adan" } },
+          "name": "string.quoted.double.adan",
+          "patterns": [
+            { "include": "#interpolation" },
+            { "match": "\\\\.", "name": "constant.character.escape.adan" }
+          ]
+        },
+        {
+          "begin": "(\\$\\{)",
+          "beginCaptures": { "1": { "name": "punctuation.section.embedded.begin.adan punctuation.definition.interpolation.begin.adan" } },
+          "end": "(\\})",
+          "endCaptures": { "1": { "name": "punctuation.section.embedded.end.adan punctuation.definition.interpolation.end.adan" } },
+          "name": "meta.interpolation.adan",
+          "patterns": [
+            { "include": "#keywords" },
+            { "include": "#types" },
+            { "include": "#functions" },
+            { "include": "#numbers" },
+            { "match": "\\b[A-Za-z_$][A-Za-z0-9_$]*\\b", "name": "variable.other.adan" },
+            { "include": "#interpolation" },
+            { "match": "[()=+\\-/*%!<>]", "name": "keyword.operator.adan" }
+          ]
+        }
       ]
     },
     "numbers": {

@@ -1,0 +1,5 @@
+program::int main() {
+    print("Hello, ${\"W$orld\"}!\n");
+    print("This should not start a nested $ interpolation: ${\"A$B\"}\n");
+    return 0;
+}

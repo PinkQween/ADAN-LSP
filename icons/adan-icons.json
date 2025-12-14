@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "adan": {
+      "iconPath": "../images/adan-icon.png"
+    }
+  },
+  "fileExtensions": {
+    "adan": "adan",
+    "adn": "adan"
+  },
+  "fileNames": {
+  }
+}

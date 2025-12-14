@@ -3,20 +3,34 @@
   "displayName": "ADAN-LSP",
   "description": "A LSP for the ADAN languge created by Lily (https://github.com/Cappucina/ADAN.git)",
   "version": "0.0.1",
+  "publisher": "pinkqween",
+  "repository": {
+    "url": "https://github.com/PinkQween/ADAN-LSP.git"
+  },
   "engines": {
     "vscode": "^1.107.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:adan",
+    "onCommand:adan-lsp.helloWorld"
+  ],
   "main": "./dist/extension.js",
+  "icon": "images/adan-icon.png",
   "contributes": {
+  "commands": [
+    {
+      "command": "adan-lsp.helloWorld",
+      "title": "ADAN: Hello World"
+    }
+  ],
   "languages": [
     {
       "id": "adan",
-      "aliases": ["ADAN"],
-      "extensions": [".adan"],
+      "aliases": ["ADAN", "adan"],
+      "extensions": [".adan", ".adn"],
       "configuration": "./language-configuration.json"
     }
   ],
@@ -25,6 +39,14 @@
       "language": "adan",
       "scopeName": "source.adan",
       "path": "./syntax/adan.tmLanguage.json"
+    }
+  ]
+  ,
+  "iconThemes": [
+    {
+      "id": "adan-file-icons",
+      "path": "./icons/adan-icons.json",
+      "label": "ADAN File Icon Theme"
     }
   ]
 },

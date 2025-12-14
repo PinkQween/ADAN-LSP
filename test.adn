@@ -1,0 +1,7 @@
+include adan.io;
+
+i::int = 4;
+
+program::void main() {
+    print("test");
+}

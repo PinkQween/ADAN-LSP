@@ -1,0 +1,5 @@
+program::int main() {
+    print("Hello, ${W$orld}!\n");
+    print("Nested: ${outer${inner}}\n");
+    return 0;
+}
