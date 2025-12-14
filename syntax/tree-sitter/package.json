@@ -1,0 +1,12 @@
+{
+  "name": "tree-sitter-adan",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "tree-sitter generate",
+    "install": "node-gyp-build"
+  },
+  "dependencies": {
+    "node-gyp-build": "^4.8.0"
+  }
+}

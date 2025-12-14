@@ -1,13 +1,16 @@
 {
   "iconDefinitions": {
-    "adan": {
-      "iconPath": "../images/adan-icon.png"
+    "file": {
+      "iconPath": "../images/adan-lang.svg"
+    },
+    "ADANIcon": {
+      "iconPath": "../images/my-lang.svg"
     }
   },
   "fileExtensions": {
-    "adan": "adan",
-    "adn": "adan"
+    "mylang": "ADANIcon"
   },
-  "fileNames": {
+  "languageIds": {
+    "myLanguageId": "ADANIcon"
   }
 }

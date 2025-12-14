@@ -2,18 +2,22 @@
   "scopeName": "source.adan",
   "name": "ADAN",
   "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
     { "include": "#keywords" },
     { "include": "#types" },
     { "include": "#functions" },
-    { "include": "#strings" },
+    { "include": "#variable-declarations" },
     { "include": "#numbers" },
-    { "include": "#comments" }
+    { "include": "#operators" },
+    { "include": "#punctuation" },
+    { "include": "#variables" }
   ],
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(include|return|while|true)\\b", "name": "keyword.control.adan" },
-        { "match": "\\b(program::int|program::void)\\b", "name": "keyword.type.adan" }
+        { "match": "\\b(include|return|while|true|false)\\b", "name": "keyword.control.adan" },
+        { "match": "\\b(program)::", "name": "keyword.other.adan" }
       ]
     },
     "types": {
@@ -23,52 +27,64 @@
     },
     "functions": {
       "patterns": [
-        { "match": "\\b(print|print_int|read_file_source|write_file_source|main|test)\\b", "name": "entity.name.function.adan" }
-      ]
-    },
-    "strings": {
-      "patterns": [
-        {
-          "begin": "\"",
-          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.adan" } },
-          "end": "\"",
-          "endCaptures": { "0": { "name": "punctuation.definition.string.end.adan" } },
-          "name": "string.quoted.double.adan",
-          "patterns": [
-            { "include": "#interpolation" },
-            { "match": "\\\\.", "name": "constant.character.escape.adan" }
-          ]
+        { 
+          "match": "\\b(print|print_int|read_file_source|write_file_source|main|test)\\s*(?=\\()", 
+          "name": "entity.name.function.adan" 
         }
       ]
     },
-    "interpolation": {
+    "variable-declarations": {
       "patterns": [
         {
-          "begin": "\"",
-          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.adan" } },
-          "end": "\"",
-          "endCaptures": { "0": { "name": "punctuation.definition.string.end.adan" } },
-          "name": "string.quoted.double.adan",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)::(int|string|void)\\b",
+          "captures": {
+            "1": { "name": "variable.other.adan" },
+            "2": { "name": "storage.type.adan" }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.template",
+      "begin": "\"",
+      "end": "(\")|((?=[^\\\\]\\n))",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.string.end" }
+      },
+      "patterns": [
+        {
+          "name": "meta.template.expression",
+          "begin": "\\$\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.template-expression.begin" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.template-expression.end" }
+          },
           "patterns": [
-            { "include": "#interpolation" },
-            { "match": "\\\\.", "name": "constant.character.escape.adan" }
+            { "include": "#strings" },
+            { "include": "#numbers" },
+            { "include": "#functions" },
+            { "include": "#keywords" },
+            { "include": "#operators" },
+            { "match": "\\(", "name": "punctuation.section.parens.begin.adan" },
+            { "match": "\\)", "name": "punctuation.section.parens.end.adan" },
+            { "match": "\\[", "name": "punctuation.section.brackets.begin.adan" },
+            { "match": "\\]", "name": "punctuation.section.brackets.end.adan" },
+            { "match": ",", "name": "punctuation.separator.adan" },
+            {
+              "name": "variable.other.adan",
+              "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+            }
           ]
         },
         {
-          "begin": "(\\$\\{)",
-          "beginCaptures": { "1": { "name": "punctuation.section.embedded.begin.adan punctuation.definition.interpolation.begin.adan" } },
-          "end": "(\\})",
-          "endCaptures": { "1": { "name": "punctuation.section.embedded.end.adan punctuation.definition.interpolation.end.adan" } },
-          "name": "meta.interpolation.adan",
-          "patterns": [
-            { "include": "#keywords" },
-            { "include": "#types" },
-            { "include": "#functions" },
-            { "include": "#numbers" },
-            { "match": "\\b[A-Za-z_$][A-Za-z0-9_$]*\\b", "name": "variable.other.adan" },
-            { "include": "#interpolation" },
-            { "match": "[()=+\\-/*%!<>]", "name": "keyword.operator.adan" }
-          ]
+          "name": "constant.character.escape",
+          "match": "\\\\[nrt\"\\\\]"
         }
       ]
     },
@@ -79,7 +95,42 @@
     },
     "comments": {
       "patterns": [
-        { "match": "//.*$", "name": "comment.line.double-slash.adan" }
+        { "match": "//.*$", "name": "comment.line.double-slash.adan" },
+        { "begin": "/\\*", "end": "\\*/", "name": "comment.block.adan" }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        { "match": "\\+\\+|--|[+\\-*/%^]=|[+\\-*/%^]|[=<>!]=|&&|\\|\\||[<>]", "name": "keyword.operator.adan" }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b",
+          "name": "variable.other.adan"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        { "match": "\\(", "name": "punctuation.section.parens.begin.adan" },
+        { "match": "\\)", "name": "punctuation.section.parens.end.adan" },
+        { "match": "\\[", "name": "punctuation.section.brackets.begin.adan" },
+        { "match": "\\]", "name": "punctuation.section.brackets.end.adan" },
+        { "match": "\\{", "name": "punctuation.section.braces.begin.adan" },
+        { "match": "\\}", "name": "punctuation.section.braces.end.adan" },
+        { "match": ";", "name": "punctuation.terminator.adan" },
+        { "match": ",", "name": "punctuation.separator.adan" }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        { "include": "#numbers" },
+        { "include": "#functions" },
+        { "include": "#keywords" },
+        { "include": "#operators" },
+        { "match": "\\+\\+|--|[+\\-*/%^]=|[+\\-*/%^]|[=<>!]=|&&|\\|\\||[<>]", "name": "keyword.operator.adan" }
       ]
     }
   }
