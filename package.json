@@ -2,7 +2,7 @@
   "name": "adan-lsp",
   "displayName": "ADAN-LSP",
   "description": "A LSP for the ADAN languge created by Lily (https://github.com/Cappucina/ADAN.git)",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "pinkqween",
   "repository": {
     "url": "https://github.com/PinkQween/ADAN-LSP.git"
