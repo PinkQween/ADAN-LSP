@@ -1,0 +1,45 @@
+{
+  "scopeName": "source.adan",
+  "name": "ADAN",
+  "patterns": [
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#comments" }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        { "match": "\\b(include|return|while|true)\\b", "name": "keyword.control.adan" },
+        { "match": "\\b(program::int|program::void)\\b", "name": "keyword.type.adan" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "match": "\\b(int|string|void)\\b", "name": "storage.type.adan" }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        { "match": "\\b(print|print_int|read_file_source|write_file_source|main|test)\\b", "name": "entity.name.function.adan" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "match": "\"(\\\\.|[^\"])*\"", "name": "string.quoted.double.adan" }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        { "match": "\\b\\d+\\b", "name": "constant.numeric.adan" }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        { "match": "//.*$", "name": "comment.line.double-slash.adan" }
+      ]
+    }
+  }
+}
