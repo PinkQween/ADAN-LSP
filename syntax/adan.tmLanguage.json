@@ -16,7 +16,7 @@
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(include|return|while|for|else|if|true|false)\\b", "name": "keyword.control.adan" },
+        { "match": "\\b(continue|break|include|return|while|for|else|if|true|false)\\b", "name": "keyword.control.adan" },
         { "match": "\\b(program)::", "name": "keyword.other.adan" }
       ]
     },
