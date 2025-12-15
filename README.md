@@ -1,3 +1,9 @@
+-[!Warning]
+-This project is not official to the ADAN language, which is why it is under my username. I am working on getting it there and have been talking with the creator privately. As announced to me, they started writing their own LSP after this was already published. I am trying to work on not deleting anything and keep improving this. Maintaining high standards and all. It's a lot to manage. For anything official related to ADAN, you can go to the following (organization https://github.com/Cappucina)[https://github.com/Cappucina]. For the link to download this, you can access it at (https://marketplace.visualstudio.com/items?itemName=pinkqween.adan-lsp)[https://marketplace.visualstudio.com/items?itemName=pinkqween.adan-lsp]
+
+
+# Below this is AI-generated
+
 
 # ADAN-LSP
 
